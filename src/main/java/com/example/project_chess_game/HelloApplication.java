@@ -69,9 +69,9 @@ public class HelloApplication extends Application {
                 thegame.Move(start, end, thegame.player1);
                 elem1 = 8 * (start.getX()) + (start.getY() + 1);
                 elem2 = 8 * (end.getX()) + (end.getY() + 1);
-                list[elem2].setImage(list[elem1].getImage());
-                list[elem1].setImage(null);
-                list[elem2].setOpacity(1);
+                list[elem2 + 64].setImage(list[elem1 + 64].getImage());
+                list[elem1 + 64].setImage(null);
+                list[elem2 + 64].setOpacity(1);
                 i++;
             } catch (Exception e) {
                 System.out.println(e.getMessage());
@@ -103,9 +103,9 @@ public class HelloApplication extends Application {
                 thegame.Move(start2, end2, thegame.player2);
                 elem1 = 8 * (start2.getX()) + (start2.getY() + 1);
                 elem2 = 8 * (end2.getX()) + (end2.getY() + 1);
-                list[elem2].setImage(list[elem1].getImage());
-                list[elem1].setImage(null);
-                list[elem2].setOpacity(1);
+                list[elem2 + 64].setImage(list[elem1 + 64].getImage());
+                list[elem1 + 64].setImage(null);
+                list[elem2 + 64].setOpacity(1);
                 i = 0;
             } catch (Exception e) {
                 System.out.println(e.getMessage());
@@ -118,28 +118,28 @@ public class HelloApplication extends Application {
     }
 
     private void initializeTerrain() {
-        list[57].setImage(pieces[3]);
-        list[58].setImage(pieces[2]);
-        list[59].setImage(pieces[1]);
-        list[60].setImage(pieces[4]);
-        list[61].setImage(pieces[5]);
-        list[62].setImage(pieces[1]);
-        list[63].setImage(pieces[2]);
-        list[64].setImage(pieces[3]);
+        list[57 + 64].setImage(pieces[3]);
+        list[58 + 64].setImage(pieces[2]);
+        list[59 + 64].setImage(pieces[1]);
+        list[60 + 64].setImage(pieces[4]);
+        list[61 + 64].setImage(pieces[5]);
+        list[62 + 64].setImage(pieces[1]);
+        list[63 + 64].setImage(pieces[2]);
+        list[64 + 64].setImage(pieces[3]);
         for (int i = 49; i < 57; i++) {
-            list[i].setImage(pieces[0]);
+            list[i + 64].setImage(pieces[0]);
         }
 
-        list[1].setImage(pieces[9]);
-        list[2].setImage(pieces[8]);
-        list[3].setImage(pieces[7]);
-        list[4].setImage(pieces[10]);
-        list[5].setImage(pieces[11]);
-        list[6].setImage(pieces[7]);
-        list[7].setImage(pieces[8]);
-        list[8].setImage(pieces[9]);
+        list[1 + 64].setImage(pieces[9]);
+        list[2 + 64].setImage(pieces[8]);
+        list[3 + 64].setImage(pieces[7]);
+        list[4 + 64].setImage(pieces[10]);
+        list[5 + 64].setImage(pieces[11]);
+        list[6 + 64].setImage(pieces[7]);
+        list[7 + 64].setImage(pieces[8]);
+        list[8 + 64].setImage(pieces[9]);
         for (int i = 9; i < 17; i++) {
-            list[i].setImage(pieces[6]);
+            list[i + 64].setImage(pieces[6]);
         }
     }
 
