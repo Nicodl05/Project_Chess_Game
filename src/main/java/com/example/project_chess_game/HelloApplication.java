@@ -1,12 +1,17 @@
 package com.example.project_chess_game;
 
+import javafx.animation.FadeTransition;
+import javafx.animation.PauseTransition;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import Auxiliary.Interaction;
 import Auxiliary.Spot;
 
@@ -16,11 +21,15 @@ import java.util.List;
 public class HelloApplication extends Application {
     private int i = 0;
     private Pane mainPane;
+    private Pane[] panes;
     private ImageView[] list;
+    private Label error;
     private Image[] pieces;
     private Interaction thegame;
     private Spot start, end, start2, end2;
     private List<Spot> available;
+    private PauseTransition hitAnimation;
+    private FadeTransition fade;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -32,7 +41,22 @@ public class HelloApplication extends Application {
         HelloController controller = fxmlLoader.getController();
         controller.setApplication(this);
         mainPane = (Pane) scene.getRoot();
-        list = mainPane.getChildren().toArray(new ImageView[0]);
+        panes = mainPane.getChildren().toArray(new Pane[0]);
+        list = panes[1].getChildren().toArray(new ImageView[0]);
+        error = (Label) panes[0].getChildren().get(1);
+        error.setAlignment(Pos.CENTER);
+        error.setOpacity(0);
+        hitAnimation = new PauseTransition(Duration.seconds(1));
+        fade = new FadeTransition();
+        fade.setDuration(Duration.millis(2000));
+        fade.setFromValue(1);
+        fade.setToValue(0);
+        fade.setCycleCount(1);
+        fade.setNode(error);
+        hitAnimation.setOnFinished(e -> {
+            fade.play();
+
+        });
         load_piece();
         initializeTerrain();
         thegame = new Interaction();
@@ -54,7 +78,9 @@ public class HelloApplication extends Application {
                 }
                 i++;
             } catch (Exception e) {
-                System.out.println(e.getMessage());
+                error.setText(e.getMessage());
+                error.setOpacity(1);
+                hitAnimation.playFromStart();
             }
 
         } else if (i == 1) {
@@ -74,7 +100,9 @@ public class HelloApplication extends Application {
                 list[elem2 + 64].setOpacity(1);
                 i++;
             } catch (Exception e) {
-                System.out.println(e.getMessage());
+                error.setText(e.getMessage());
+                error.setOpacity(1);
+                hitAnimation.playFromStart();
             }
         } else if (i == 2) {
             try {
@@ -89,7 +117,9 @@ public class HelloApplication extends Application {
                 }
                 i++;
             } catch (Exception e) {
-                System.out.println(e.getMessage());
+                error.setText(e.getMessage());
+                error.setOpacity(1);
+                hitAnimation.playFromStart();
             }
         } else if (i == 3) {
             try {
@@ -108,7 +138,9 @@ public class HelloApplication extends Application {
                 list[elem2 + 64].setOpacity(1);
                 i = 0;
             } catch (Exception e) {
-                System.out.println(e.getMessage());
+                error.setText(e.getMessage());
+                error.setOpacity(1);
+                hitAnimation.playFromStart();
             }
         }
     }
