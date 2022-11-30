@@ -6,9 +6,16 @@ import javafx.scene.input.MouseEvent;
 
 public class HelloController {
 
+    private HelloApplication helloApplication;
+
+    public void setApplication(HelloApplication hello) {
+        this.helloApplication = hello;
+    }
+
     @FXML
     protected void onClick(MouseEvent event) {
         ImageView temp = (ImageView) event.getSource();
         System.out.println(temp.getId());
+        this.helloApplication.pick(temp.getId().toString());
     }
 }
