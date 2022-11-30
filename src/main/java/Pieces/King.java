@@ -94,6 +94,7 @@ public class King extends Piece{
                 }
             }
         }
+        //Checking for castle if possible
         if(Short_Castle(board,attacked)){
             if(start.getPiece().getColor()){ // true for white
                 availables.add(board.getSpot(7,6));
@@ -205,9 +206,7 @@ public class King extends Piece{
                 }
             }
         }
-
         return false;
-
     }
 
 }
