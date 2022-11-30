@@ -100,15 +100,21 @@ public class Interaction {
             if (Checkmate(player2.getColor())) {
                 System.out.println(player1.getName() + " has won");
             }
-            System.out.println("The king of player who just did the move " + player.getName() + " with "
-                    + player.getColor() + " is in check\n");
+            System.out.println("The king of player who just did the move " + player.getName() + " with ");
+            if(player.getColor())
+                System.out.println(" white is in check");
+            else
+                System.out.println(" black is in check");
         }
         if (Check_King(player1.getColor())) {
             if (Checkmate(player1.getColor())) {
                 System.out.println(player2.getName() + " has won");
             }
-            System.out.println("The king of player who just did the move " + player.getName() + " with "
-                    + player.getColor() + " is NOT in check\n");
+            System.out.print("The king of player who just did the move " + player.getName() + " with ");
+            if(player.getColor())
+                System.out.println(" white is Not in check \n");
+            else
+                System.out.println(" black is Not in check");
         }
 
         Get_available_Move_King(player.getColor());
@@ -267,8 +273,7 @@ public class Interaction {
             for (int j = 0; j < 8; j++) {
                 // We find my king spot
                 if (board.getSpot(i, j).getPiece() != null) {
-                    if (board.getSpot(i, j).getPiece().getColor() == color_player
-                            && board.getSpot(i, j).getPiece().getType() == "King") {
+                    if (board.getSpot(i, j).getPiece().getColor() == color_player && board.getSpot(i, j).getPiece().getType() == "King") {
 
                         // In all unvalid spot
                         for (int k = 0; k < unvalid_spots.size(); k++) {
@@ -293,8 +298,7 @@ public class Interaction {
             for (int j = 0; j < 8; j++) {
                 // We find my king spot
                 if (board.getSpot(i, j).getPiece() != null) {
-                    if (board.getSpot(i, j).getPiece().getColor() == color_player
-                            && board.getSpot(i, j).getPiece().getType() == "King") {
+                    if (board.getSpot(i, j).getPiece().getColor() == color_player && board.getSpot(i, j).getPiece().getType() == "King") {
                         // Check all of the available moves of the king
                         availables = board.getSpot(i, j).getPiece().available_spot(board, board.getSpot(i, j),
                                 attacked_spot(color_player));
@@ -319,22 +323,21 @@ public class Interaction {
                     if (board.getSpot(i, j).getPiece() != null) {
                         if (board.getSpot(i, j).getPiece().getColor() == color_player) {
                             // All of my available moves in the board
-                            availables.addAll(board.getSpot(i, j).getPiece().available_spot(board, board.getSpot(i, j),
-                                    attacked_spot(color_player)));
+                            availables.addAll(board.getSpot(i, j).getPiece().available_spot(board, board.getSpot(i, j), attacked_spot(color_player)));
 
                         }
                     }
                 }
             }
-            System.out.println(
-                    "The opponent is in check And King can't move, all available moves to try from other pieces: "
-                            + availables.size());
-            for (int i = 0; i < availables.size(); i++) {
-                availables.get(i).DisplayCoordinate();
+            System.out.println("The opponent is in check And King can't move, all available moves to try from other pieces: " + availables.size());
+            if(availables.size()==0)
+                return true;
+            else{
+                for (int i = 0; i < availables.size(); i++) {
+                    availables.get(i).DisplayCoordinate();
+                }
             }
-
         }
-
         return false;
     }
 }
