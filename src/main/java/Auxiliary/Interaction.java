@@ -54,17 +54,23 @@ public class Interaction {
                     }
 
                     // Checks if there's a case of castle
-                    if (start.getPiece().getType() == "King") {
+                    if (start.getPiece().getType() == "King" &&  !start.getPiece().GetHasmoved()) {
                         if (start.getPiece().getColor()) {
-                            if (start.getX() == 7 && start.getY() == 4 && end.getX() == 7 && end.getY() == 2) {
+                            if (start.getX() == 7 && start.getY() == 4 && end.getX() == 7 && end.getY() == 2 && board.getSpot(7, 0).getPiece() != null && board.getSpot(7, 0).getPiece().getType() == "Rook" && !board.getSpot(7, 0).getPiece().GetHasmoved()) {
                                 board.getSpot(7, 3).setPiece(board.getSpot(7, 0).getPiece());
                                 board.getSpot(7, 0).setPiece(null);
                             }
-                        } else if (!start.getPiece().getColor()) {
-                            if (start.getX() == 0 && start.getY() == 4 && end.getX() == 0 && end.getY() == 2) {
+                            // rajout la fonction du second castle
+                            if (start.getX() == 7 && start.getY() == 4 && end.getX() == 7 && end.getY() == 6 && board.getSpot(7, 7).getPiece() != null && board.getSpot(7, 7).getPiece().getType() == "Rook" && !board.getSpot(7, 7).getPiece().GetHasmoved()) {
+                                board.getSpot(7, 5).setPiece(board.getSpot(7, 7).getPiece());
+                                board.getSpot(7, 7).setPiece(null);
+                            }
+                        }
+                        else if (!start.getPiece().getColor() ) {
+                            if (start.getX() == 0 && start.getY() == 4 && end.getX() == 0 && end.getY() == 2&& board.getSpot(0, 0).getPiece() != null && board.getSpot(0, 0).getPiece().getType() == "Rook" && !board.getSpot(0, 0).getPiece().GetHasmoved()) {
                                 board.getSpot(0, 3).setPiece(board.getSpot(0, 0).getPiece());
                                 board.getSpot(0, 0).setPiece(null);
-                            } else if (start.getX() == 0 && start.getY() == 4 && end.getX() == 0 && end.getY() == 6) {
+                            } else if (start.getX() == 0 && start.getY() == 4 && end.getX() == 0 && end.getY() == 6 && board.getSpot(0, 7).getPiece() != null && board.getSpot(0, 7).getPiece().getType() == "Rook" && !board.getSpot(0, 7).getPiece().GetHasmoved()) {
                                 board.getSpot(0, 5).setPiece(board.getSpot(0, 7).getPiece());
                                 board.getSpot(0, 7).setPiece(null);
                             }
