@@ -19,7 +19,7 @@ public class HelloApplication extends Application {
     private ImageView[] list;
     private Image[] pieces;
     private Interaction thegame;
-    private Spot start, end;
+    private Spot start, end, start2, end2;
     private List<Spot> available;
 
     @Override
@@ -48,41 +48,73 @@ public class HelloApplication extends Application {
                 available = start.getPiece().available_spot(thegame.board, start,
                         thegame.attacked_spot(thegame.player1.getColor()));
                 for (Spot elem : available) {
-                    temp = (int) Math.round((elem.getX() + 1) * -8 + (elem.getY() + 1) * 14.3333);
+                    temp = 8 * (elem.getX()) + (elem.getY() + 1);
                     list[temp].setImage(pieces[12]);
                     list[temp].setOpacity(0.5);
                 }
+                i++;
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
-            i++;
+
         } else if (i == 1) {
             try {
                 end = thegame.player1.ChooseSpotEnd_graph(thegame.board, start,
                         thegame.attacked_spot(thegame.player1.getColor()), id);
                 for (Spot elem : available) {
-                    temp = (int) Math.round((elem.getX() + 1) * -8 + (elem.getY() + 1) * 14.3333);
+                    temp = 8 * (elem.getX()) + (elem.getY() + 1);
                     list[temp].setImage(null);
                 }
+
                 thegame.Move(start, end, thegame.player1);
-                elem1 = (int) Math.round((start.getX() + 1) * -8 + (start.getY() + 1) * 14.3333);
-                elem2 = (int) Math.round((end.getX() + 1) * -8 + (end.getY() + 1) * 14.3333);
-                move_piece(elem1, elem2, list[elem1].getImage());
+                elem1 = 8 * (start.getX()) + (start.getY() + 1);
+                elem2 = 8 * (end.getX()) + (end.getY() + 1);
+                list[elem2].setImage(list[elem1].getImage());
+                list[elem1].setImage(null);
+                list[elem2].setOpacity(1);
+                i++;
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
-            System.out.println("bite");
-            i++;
+        } else if (i == 2) {
+            try {
+                start2 = thegame.player2.ChooseSpotStart_graph(thegame.board,
+                        thegame.attacked_spot(thegame.player2.getColor()), id);
+                available = start2.getPiece().available_spot(thegame.board, start2,
+                        thegame.attacked_spot(thegame.player2.getColor()));
+                for (Spot elem : available) {
+                    temp = 8 * (elem.getX()) + (elem.getY() + 1);
+                    list[temp].setImage(pieces[12]);
+                    list[temp].setOpacity(0.5);
+                }
+                i++;
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        } else if (i == 3) {
+            try {
+                end2 = thegame.player2.ChooseSpotEnd_graph(thegame.board, start2,
+                        thegame.attacked_spot(thegame.player2.getColor()), id);
+                for (Spot elem : available) {
+                    temp = 8 * (elem.getX()) + (elem.getY() + 1);
+                    list[temp].setImage(null);
+                }
+
+                thegame.Move(start2, end2, thegame.player2);
+                elem1 = 8 * (start2.getX()) + (start2.getY() + 1);
+                elem2 = 8 * (end2.getX()) + (end2.getY() + 1);
+                list[elem2].setImage(list[elem1].getImage());
+                list[elem1].setImage(null);
+                list[elem2].setOpacity(1);
+                i = 0;
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 
     public static void main(String[] args) {
         launch();
-    }
-
-    public void move_piece(int origin, int destination, Image img) {
-        list[destination].setImage(img);
-        list[origin].setImage(null);
     }
 
     private void initializeTerrain() {
