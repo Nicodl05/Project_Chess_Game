@@ -94,6 +94,24 @@ public class King extends Piece{
                 }
             }
         }
+        if(Short_Castle(board,attacked)){
+            if(start.getPiece().getColor()){ // true for white
+                availables.add(board.getSpot(7,6));
+
+            }
+            else{   // false for black
+                availables.add(board.getSpot(0,6));
+            }
+        }
+        if(Long_Castle(board,attacked)){
+            if(start.getPiece().getColor()){ // true for white
+                availables.add(board.getSpot(7,2));
+
+            }
+            else{   // false for black
+                availables.add(board.getSpot(0,2));
+            }
+        }
 
         return availables;
     }
@@ -115,7 +133,6 @@ public class King extends Piece{
                         if (attacked.get(i)==board.getSpot(7,2) || attacked.get(i)==board.getSpot(7,3)){
                             return false;
                         }
-
                     }
                     return true;
                 }
@@ -137,7 +154,6 @@ public class King extends Piece{
                         if (attacked.get(i)==board.getSpot(0,2) || attacked.get(i)==board.getSpot(0,3)){
                             return false;
                         }
-
                     }
                     return true;
                 }
