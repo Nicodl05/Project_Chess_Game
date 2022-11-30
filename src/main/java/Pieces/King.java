@@ -118,12 +118,12 @@ public class King extends Piece{
     }
 
     public boolean Long_Castle(Board board, List<Spot> attacked) throws Exception {
-
+        boolean test=false;
         //On white side (Check if the spot of the king and the rook aren't empty)
         if (board.getSpot(7,4).getPiece()!=null && board.getSpot(7,0).getPiece()!=null){
 
             //Check if they moved
-            if (board.getSpot(7,4).getPiece().GetHasmoved()==false && board.getSpot(7,0).getPiece().GetHasmoved()==false ){
+            if (board.getSpot(7,4).getPiece().GetHasmoved()==false && board.getSpot(7,0).getPiece().GetHasmoved()==false  && board.getSpot(7,0).getPiece().getType()=="Rook"){
 
                 //If there is no piece between them
                 if (board.getSpot(7,3).getPiece()==null && board.getSpot(7,2).getPiece()==null
@@ -131,7 +131,7 @@ public class King extends Piece{
 
                     //Check if the path between them isn't attacked
                     for (int i=0; i<attacked.size(); i++){
-                        if (attacked.get(i)==board.getSpot(7,2) || attacked.get(i)==board.getSpot(7,3)){
+                        if (attacked.get(i)==board.getSpot(7,2) || attacked.get(i)==board.getSpot(0,3) ){
                             return false;
                         }
                     }
@@ -140,8 +140,9 @@ public class King extends Piece{
             }
         }
 
+
         //On Black side (Check if the spot of the king and the rook aren't empty)
-        if (board.getSpot(0,4).getPiece()!=null && board.getSpot(0,0).getPiece()!=null){
+        if (board.getSpot(0,4).getPiece()!=null && board.getSpot(0,0).getPiece()!=null && board.getSpot(0,0).getPiece().getType()=="Rook"){
 
             //Check if they moved
             if (board.getSpot(0,4).getPiece().GetHasmoved()==false && board.getSpot(0,0).getPiece().GetHasmoved()==false ){
