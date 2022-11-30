@@ -69,8 +69,8 @@ public class HelloApplication extends Application {
             try {
                 start = thegame.player1.ChooseSpotStart_graph(thegame.board,
                         thegame.attacked_spot(thegame.player1.getColor()), id);
-                available = start.getPiece().available_spot(thegame.board, start,
-                        thegame.attacked_spot(thegame.player1.getColor()));
+                available = start.getPiece().available_spot(thegame.board, start, thegame.attacked_spot(thegame.player1.getColor()));
+
                 for (Spot elem : available) {
                     temp = 8 * (elem.getX()) + (elem.getY() + 1);
                     list[temp].setImage(pieces[12]);
