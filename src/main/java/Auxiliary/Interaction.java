@@ -52,16 +52,13 @@ public class Interaction {
                     if (board.getSpot(i, j).getPiece() != null) {
                         board.getSpot(i, j).setPiece(null);
                     }
-                    // Set new piece
-                    Spot previous_spot = board.getSpot(i, j);
+
+                    // Checks if there's a case of castle
                     if (start.getPiece().getType() == "King") {
                         if (start.getPiece().getColor()) {
                             if (start.getX() == 7 && start.getY() == 4 && end.getX() == 7 && end.getY() == 2) {
                                 board.getSpot(7, 3).setPiece(board.getSpot(7, 0).getPiece());
                                 board.getSpot(7, 0).setPiece(null);
-                            } else if (start.getX() == 7 && start.getY() == 4 && end.getX() == 7 && end.getY() == 6) {
-                                board.getSpot(7, 5).setPiece(board.getSpot(7, 7).getPiece());
-                                board.getSpot(7, 7).setPiece(null);
                             }
                         } else if (!start.getPiece().getColor()) {
                             if (start.getX() == 0 && start.getY() == 4 && end.getX() == 0 && end.getY() == 2) {
@@ -74,6 +71,8 @@ public class Interaction {
                         }
 
                     }
+
+                    // Set new piece
                     board.getSpot(i, j).setPiece(start.getPiece());
 
                     // set hasMoved to true
@@ -91,10 +90,17 @@ public class Interaction {
             }
         }
 
-        if (Check_King(player.getColor()) == true) {
+        if (Check_King(player2.getColor())) {
+            if (Checkmate(player2.getColor())) {
+                System.out.println(player1.getName() + " has won");
+            }
             System.out.println("The king of player who just did the move " + player.getName() + " with "
                     + player.getColor() + " is in check\n");
-        } else {
+        }
+        if (Check_King(player1.getColor())) {
+            if (Checkmate(player1.getColor())) {
+                System.out.println(player2.getName() + " has won");
+            }
             System.out.println("The king of player who just did the move " + player.getName() + " with "
                     + player.getColor() + " is NOT in check\n");
         }
@@ -112,7 +118,7 @@ public class Interaction {
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
 
-                // if the spot on board isn't empty And it is an ennemy
+                // if the spot on board isn't empty And it is an enemy
                 if (board.getSpot(i, j).getPiece() != null &&
                         board.getSpot(i, j).getPiece().getColor() != color_player) {
 
@@ -273,7 +279,7 @@ public class Interaction {
     }
 
     public List<Spot> Get_available_Move_King(boolean color_player) throws Exception {
-        List<Spot> attacked = attacked_spot(color_player);
+
         List<Spot> availables = new ArrayList<>();
 
         // This first loop is to find all availables moves of King
@@ -317,14 +323,12 @@ public class Interaction {
             System.out.println(
                     "The opponent is in check And King can't move, all available moves to try from other pieces: "
                             + availables.size());
-            /*
-             * for (int i=0; i<availables.size(); i++){
-             * availables.get(i).DisplayCoordinate();
-             * }
-             */
+            for (int i = 0; i < availables.size(); i++) {
+                availables.get(i).DisplayCoordinate();
+            }
+
         }
 
         return false;
     }
-
 }
