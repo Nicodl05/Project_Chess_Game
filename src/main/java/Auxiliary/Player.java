@@ -8,10 +8,12 @@ public class Player {
     // true for white, false for black
     private boolean color;
     private String name;
+    private int score;
 
     public Player(boolean color, String name) {
         this.color = color;
         this.name = name;
+        score=0;
     }
 
     public boolean getColor() {
@@ -168,6 +170,19 @@ public class Player {
         }
 
         return check;
+    }
+
+    public int Score_player(Board board) throws Exception {
+        for (int i=0; i<8; i++){
+            for (int j=0; j<8; j++){
+                if (board.getSpot(i,j).getPiece()!=null){
+                    if (board.getSpot(i,j).getPiece().getColor()==this.color){
+                        score= score + board.getSpot(i,j).getPiece().getValue();
+                    }
+                }
+            }
+        }
+        return score;
     }
 
     public Spot Get_chosenspot(char column, char line, Board board) throws Exception {
