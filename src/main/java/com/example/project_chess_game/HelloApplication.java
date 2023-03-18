@@ -91,7 +91,27 @@ public class HelloApplication extends Application {
                     temp = 8 * (elem.getX()) + (elem.getY() + 1);
                     list[temp].setImage(null);
                 }
+                if(end.getPiece()!=null){
+                    if(end.getPiece().getType()!=null){
+                        System.out.println("Piece j1 : " + start.getPiece().getType());
+                        System.out.println("Piece j2 : " + end.getPiece().getType());
+                        try {
+                            // Create a process builder for the executable file
+                            ProcessBuilder pb = new ProcessBuilder("SpaceSniffer.exe");
 
+                            // Start the process
+                            Process process = pb.start();
+
+                            // Wait for the process to finish
+                            int exitCode = process.waitFor();
+
+                            // Print the exit code of the process
+                            System.out.println("Exit code: " + exitCode);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
                 thegame.Move(start, end, thegame.player1);
                 elem1 = 8 * (start.getX()) + (start.getY() + 1);
                 elem2 = 8 * (end.getX()) + (end.getY() + 1);
@@ -129,7 +149,12 @@ public class HelloApplication extends Application {
                     temp = 8 * (elem.getX()) + (elem.getY() + 1);
                     list[temp].setImage(null);
                 }
-
+                if(end2.getPiece()!=null){
+                    if(end2.getPiece().getType()!=null){
+                        System.out.println("Piece j1 : " + start2.getPiece().getType());
+                        System.out.println("Piece j2 : " + end2.getPiece().getType());
+                    }
+                }
                 thegame.Move(start2, end2, thegame.player2);
                 elem1 = 8 * (start2.getX()) + (start2.getY() + 1);
                 elem2 = 8 * (end2.getX()) + (end2.getY() + 1);
