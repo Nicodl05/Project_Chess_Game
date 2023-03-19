@@ -14,6 +14,11 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import Auxiliary.Interaction;
 import Auxiliary.Spot;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+import java.io.FileWriter;
+import java.io.IOException;
 
 import java.io.IOException;
 import java.util.List;
@@ -63,6 +68,72 @@ public class HelloApplication extends Application {
 
     }
 
+    public void writeFile(){
+        String filePath = "nim.txt";
+
+        try {
+            // Open the file in write mode
+            FileWriter writer = new FileWriter(filePath);
+
+            // Write the new content to the file
+            writer.write("Ordinateur,Adrien\nNoir,Blanc\n");
+
+            // Close the file
+            writer.close();
+
+            System.out.println("Successfully wrote to the file.");
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+    }
+    public String retrievewinner(){
+        String filePath = "nim.txt";
+        String lastWord = "";
+
+        try {
+            // Open the file in read mode
+            File file = new File(filePath);
+            Scanner scanner = new Scanner(file);
+
+            // Read each line and split it into words
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                String[] lineWords = line.split(",");
+                if (lineWords.length > 0) {
+                    lastWord = lineWords[lineWords.length-1];
+                }
+            }
+
+            // Print the last word
+            System.out.println("Last word: " + lastWord);
+
+            // Close the file
+            scanner.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found.");
+            e.printStackTrace();
+        }
+        return lastWord;
+    }
+
+    public void startNimGame(){
+        try {
+            // Create a process builder for the executable file
+            ProcessBuilder pb = new ProcessBuilder("Nim.exe");
+
+            // Start the process
+            Process process = pb.start();
+
+            // Wait for the process to finish
+            int exitCode = process.waitFor();
+
+            // Print the exit code of the process
+            System.out.println("Exit code: " + exitCode);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     public void pick(String id) {
         int temp, elem1, elem2;
         if (i == 0) {
@@ -93,31 +164,41 @@ public class HelloApplication extends Application {
                 }
                 if(end.getPiece()!=null){
                     if(end.getPiece().getType()!=null){
+                        writeFile();
                         System.out.println("Piece j1 : " + start.getPiece().getType());
                         System.out.println("Piece j2 : " + end.getPiece().getType());
-                        try {
-                            // Create a process builder for the executable file
-                            ProcessBuilder pb = new ProcessBuilder("SpaceSniffer.exe");
+                        startNimGame();
+                        String winner = retrievewinner();
+                        if(winner.equals("Blanc")){
+                            thegame.Move(start, end, thegame.player1);
+                            elem1 = 8 * (start.getX()) + (start.getY() + 1);
+                            elem2 = 8 * (end.getX()) + (end.getY() + 1);
+                            list[elem2 + 64].setImage(list[elem1 + 64].getImage());
+                            list[elem1 + 64].setImage(null);
+                            list[elem2 + 64].setOpacity(1);
+                        }
+                        else{
+                            thegame.Move(end, start, thegame.player1);
+                            elem1 = 8 * (end.getX()) + (end.getY() + 1);
+                            elem2 = 8 * (start.getX()) + (start.getY() + 1);
+                            list[elem2 + 64].setImage(list[elem1 + 64].getImage());
+                            list[elem1 + 64].setImage(null);
+                            list[elem2 + 64].setOpacity(1);
 
-                            // Start the process
-                            Process process = pb.start();
-
-                            // Wait for the process to finish
-                            int exitCode = process.waitFor();
-
-                            // Print the exit code of the process
-                            System.out.println("Exit code: " + exitCode);
-                        } catch (Exception e) {
-                            e.printStackTrace();
                         }
                     }
                 }
-                thegame.Move(start, end, thegame.player1);
-                elem1 = 8 * (start.getX()) + (start.getY() + 1);
-                elem2 = 8 * (end.getX()) + (end.getY() + 1);
-                list[elem2 + 64].setImage(list[elem1 + 64].getImage());
-                list[elem1 + 64].setImage(null);
-                list[elem2 + 64].setOpacity(1);
+
+                if(end.getPiece()==null){
+                    thegame.Move(start, end, thegame.player1);
+                    elem1 = 8 * (start.getX()) + (start.getY() + 1);
+                    elem2 = 8 * (end.getX()) + (end.getY() + 1);
+                    list[elem2 + 64].setImage(list[elem1 + 64].getImage());
+                    list[elem1 + 64].setImage(null);
+                    list[elem2 + 64].setOpacity(1);
+
+                }
+
                 i++;
             } catch (Exception e) {
                 error.setText(e.getMessage());
@@ -151,16 +232,39 @@ public class HelloApplication extends Application {
                 }
                 if(end2.getPiece()!=null){
                     if(end2.getPiece().getType()!=null){
+                        writeFile();
                         System.out.println("Piece j1 : " + start2.getPiece().getType());
                         System.out.println("Piece j2 : " + end2.getPiece().getType());
+                        startNimGame();
+                        String winner = retrievewinner();
+                        if(winner.equals("Noir")){
+                            thegame.Move(start2, end2, thegame.player2);
+                            elem1 = 8 * (start2.getX()) + (start2.getY() + 1);
+                            elem2 = 8 * (end2.getX()) + (end2.getY() + 1);
+                            list[elem2 + 64].setImage(list[elem1 + 64].getImage());
+                            list[elem1 + 64].setImage(null);
+                            list[elem2 + 64].setOpacity(1);
+                        }
+                        else{
+                            thegame.Move(start2, end2, thegame.player2);
+                            elem1 = 8 * (end2.getX()) + (end2.getY() + 1);
+                            elem2 = 8 * (start2.getX()) + (start2.getY() + 1);
+                            list[elem2 + 64].setImage(list[elem1 + 64].getImage());
+                            list[elem1 + 64].setImage(null);
+                            list[elem2 + 64].setOpacity(1);
+                        }
                     }
                 }
-                thegame.Move(start2, end2, thegame.player2);
-                elem1 = 8 * (start2.getX()) + (start2.getY() + 1);
-                elem2 = 8 * (end2.getX()) + (end2.getY() + 1);
-                list[elem2 + 64].setImage(list[elem1 + 64].getImage());
-                list[elem1 + 64].setImage(null);
-                list[elem2 + 64].setOpacity(1);
+                else{
+                    thegame.Move(start2, end2, thegame.player2);
+                    elem1 = 8 * (start2.getX()) + (start2.getY() + 1);
+                    elem2 = 8 * (end2.getX()) + (end2.getY() + 1);
+                    list[elem2 + 64].setImage(list[elem1 + 64].getImage());
+                    list[elem1 + 64].setImage(null);
+                    list[elem2 + 64].setOpacity(1);
+                }
+
+
                 i = 0;
             } catch (Exception e) {
                 error.setText(e.getMessage());
