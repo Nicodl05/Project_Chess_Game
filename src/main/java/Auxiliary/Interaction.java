@@ -23,6 +23,13 @@ public class Interaction {
             board.displayBoard();
             start = player1.ChooseSpotStart(board, attacked_spot(player1.getColor()));
             end = player1.ChooseSpotEnd(board, start, attacked_spot(player1.getColor()));
+            System.out.println("game");
+            if(end.getPiece()!=null){
+                System.out.println("in");
+               if(end.getPiece().getType()!=null){
+                   System.out.println("fight");
+               }
+            }
             Move(start, end, player1);
             board.displayBoard();
             if (Checkmate(player2.getColor())) {
@@ -31,6 +38,11 @@ public class Interaction {
             }
             start2 = player2.ChooseSpotStart(board, attacked_spot(player2.getColor()));
             end2 = player2.ChooseSpotEnd(board, start2, attacked_spot(player2.getColor()));
+            if(end2.getPiece()!=null){
+                if(end2.getPiece().getType()!=null){
+                    System.out.println("fight");
+                }
+            }
             Move(start2, end2, player2);
             i++;
             if (Checkmate(player1.getColor())) {
@@ -77,6 +89,12 @@ public class Interaction {
                         }
 
                     }
+
+
+                    // i want to check if the new spot is attacked by the other player
+
+
+
 
                     // Set new piece
                     board.getSpot(i, j).setPiece(start.getPiece());
@@ -312,6 +330,7 @@ public class Interaction {
     public boolean Checkmate(boolean color_player) throws Exception {
         List<Spot> availables = new ArrayList<>();
         // If the king is in check AND has no move
+        System.out.println("Check: in" );;
         if (Check_King(color_player) == true && Get_available_Move_King(color_player).size() == 0) {
 
             // WHAT WE WANT: Try all of available move with other pieces and see if he is
