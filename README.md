@@ -44,7 +44,7 @@ Le jeu se joue en 3 manches, et le vainqueur est celui qui a gagné le plus de m
 
 #### Réalisation du jeu de Pierre Feuille Ciseaux
 
-- [Carole-Anne Cos](https://github.com/)
+- [Carole-Anne Cos](https://github.com/caro0031)
 
 ### Snake
 
@@ -60,7 +60,7 @@ Le jeu se termine lorsque l'un des deux joueurs meurt, et le vainqueur est celui
 
 #### Réalisation du jeu du Snake
 
-- [Sarah Fages](https://github.com/)
+- [Sarah Fages](https://github.com/SarahFages)
 - [Lucas Couffin](https://github.com/)
 
 ### Jeu de Nim
@@ -89,11 +89,17 @@ Le jeu se joue en utilisant la caméra de l'ordinateur. Le joueur doit donc se p
 
 #### Réalisation du jeu de Tir à l'arc
 
-- [Sarah Fages](https://github.com/)
+- [Sarah Fages](https://github.com/SarahFages)
 
 ## Interactions entre les jeux
 
 Les différents mini-jeux sont appelés les uns les autres à la manière de microservices applicatifs. Chaque mini-jeu est appelé par le jeu d'échecs lors d'un duel entre deux pièces de niveau équivalent. Le jeu d'échecs entre donc les informations nécessaires au mini-jeu pour qu'il puisse se lancer dans un fichier `.txt` servant aux deux jeux à communiquer. Le jeu d'échecs lance ensuite le mini-jeu et attend que celui-ci se termine. Le mini-jeu modifie ensuite le fichier `.txt` pour indiquer au jeu d'échecs le vainqueur du duel.
+
+## Installation
+
+Chaque mini-jeu dispose d'un `.exe` qui permet de lancer le jeu. Les mini-jeux sont lancés par le jeu d'échecs, qui se lance lui-même soit en lançant un exécutable[^1], soit en lançant le projet en debug.
+
+[^1]: L'exécutable n'a pas encore été créé.
 
 ## Conclusion
 
@@ -108,12 +114,12 @@ Nous sommes très satisfaits du résultat final, et heureux d'avoir pu réaliser
 - [Abdelaziz Abdelkefi](https://github.com/Azizo27)
 - [Adrien Blair](https://github.com/Ahddry)
 - [Maelys Bourgeat](https://github.com/Maelys92)
-- [Carole-Anne Cos](https://github.com/)
+- [Carole-Anne Cos](https://github.com/caro0031)
 - [Lucas Couffin](https://github.com/)
 - [Nicolas Dreyfus--Laquièze](https://github.com/Nicodl05)
-- [Sarah Fages](https://github.com/)
+- [Sarah Fages](https://github.com/SarahFages)
 - [Arthur Fournier](https://github.com/space192)
 
 ## Captures d'écran
 
-> TODO
+![Capture d'écran du jeu de Nim](/Captures/Nim1.png)
