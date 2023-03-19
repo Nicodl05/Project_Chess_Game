@@ -16,6 +16,7 @@ import Auxiliary.Interaction;
 import Auxiliary.Spot;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.Random;
 import java.util.Scanner;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -35,6 +36,8 @@ public class HelloApplication extends Application {
     private List<Spot> available;
     private PauseTransition hitAnimation;
     private FadeTransition fade;
+    private String gameWinner;
+    private boolean endgame = false;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -134,6 +137,23 @@ public class HelloApplication extends Application {
             e.printStackTrace();
         }
     }
+
+    public void miniGames(){
+        Random random = new Random();
+        int randomNumber = random.nextInt(3) + 1;
+       /* switch (randomNumber){
+            case 1:
+                startNimGame();
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case default:
+                break;
+        }*/
+        startNimGame();
+    }
     public void pick(String id) {
         int temp, elem1, elem2;
         if (i == 0) {
@@ -164,12 +184,36 @@ public class HelloApplication extends Application {
                 }
                 if(end.getPiece()!=null){
                     if(end.getPiece().getType()!=null){
-                        writeFile();
-                        System.out.println("Piece j1 : " + start.getPiece().getType());
-                        System.out.println("Piece j2 : " + end.getPiece().getType());
-                        startNimGame();
-                        String winner = retrievewinner();
-                        if(winner.equals("Blanc")){
+                        if(end.getPiece().getType()==start.getPiece().getType()){
+                            writeFile();
+                            System.out.println("Piece j1 : " + start.getPiece().getType());
+                            System.out.println("Piece j2 : " + end.getPiece().getType());
+                            if(end.getPiece().getValue()<3){
+                                startNimGame();
+                            }
+                            else{
+                                miniGames();
+                            }
+                            String winner = retrievewinner();
+                            if(winner.equals("Blanc")){
+                                thegame.Move(start, end, thegame.player1);
+                                elem1 = 8 * (start.getX()) + (start.getY() + 1);
+                                elem2 = 8 * (end.getX()) + (end.getY() + 1);
+                                list[elem2 + 64].setImage(list[elem1 + 64].getImage());
+                                list[elem1 + 64].setImage(null);
+                                list[elem2 + 64].setOpacity(1);
+                            }
+                            else{
+                                thegame.Move(end, start, thegame.player1);
+                                elem1 = 8 * (end.getX()) + (end.getY() + 1);
+                                elem2 = 8 * (start.getX()) + (start.getY() + 1);
+                                list[elem2 + 64].setImage(list[elem1 + 64].getImage());
+                                list[elem1 + 64].setImage(null);
+                                list[elem2 + 64].setOpacity(1);
+
+                            }
+                        }
+                        else{
                             thegame.Move(start, end, thegame.player1);
                             elem1 = 8 * (start.getX()) + (start.getY() + 1);
                             elem2 = 8 * (end.getX()) + (end.getY() + 1);
@@ -177,18 +221,9 @@ public class HelloApplication extends Application {
                             list[elem1 + 64].setImage(null);
                             list[elem2 + 64].setOpacity(1);
                         }
-                        else{
-                            thegame.Move(end, start, thegame.player1);
-                            elem1 = 8 * (end.getX()) + (end.getY() + 1);
-                            elem2 = 8 * (start.getX()) + (start.getY() + 1);
-                            list[elem2 + 64].setImage(list[elem1 + 64].getImage());
-                            list[elem1 + 64].setImage(null);
-                            list[elem2 + 64].setOpacity(1);
 
-                        }
                     }
                 }
-
                 if(end.getPiece()==null){
                     thegame.Move(start, end, thegame.player1);
                     elem1 = 8 * (start.getX()) + (start.getY() + 1);
@@ -198,12 +233,19 @@ public class HelloApplication extends Application {
                     list[elem2 + 64].setOpacity(1);
 
                 }
-
                 i++;
             } catch (Exception e) {
                 error.setText(e.getMessage());
                 error.setOpacity(1);
                 hitAnimation.playFromStart();
+            }
+            try {
+                if (thegame.Checkmate(thegame.player2.getColor())) {
+                    gameWinner = "player 1";
+                    endgame = true;
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         } else if (i == 2) {
             try {
@@ -222,6 +264,7 @@ public class HelloApplication extends Application {
                 error.setOpacity(1);
                 hitAnimation.playFromStart();
             }
+
         } else if (i == 3) {
             try {
                 end2 = thegame.player2.ChooseSpotEnd_graph(thegame.board, start2,
@@ -232,12 +275,35 @@ public class HelloApplication extends Application {
                 }
                 if(end2.getPiece()!=null){
                     if(end2.getPiece().getType()!=null){
-                        writeFile();
-                        System.out.println("Piece j1 : " + start2.getPiece().getType());
-                        System.out.println("Piece j2 : " + end2.getPiece().getType());
-                        startNimGame();
-                        String winner = retrievewinner();
-                        if(winner.equals("Noir")){
+                        if(start2.getPiece().getType()==end2.getPiece().getType()){
+                            writeFile();
+                            System.out.println("Piece j1 : " + start2.getPiece().getType());
+                            System.out.println("Piece j2 : " + end2.getPiece().getType());
+                            if(end.getPiece().getValue()<3){
+                                startNimGame();
+                            }
+                            else{
+                                miniGames();
+                            }
+                            String winner = retrievewinner();
+                            if(winner.equals("Noir")){
+                                thegame.Move(start2, end2, thegame.player2);
+                                elem1 = 8 * (start2.getX()) + (start2.getY() + 1);
+                                elem2 = 8 * (end2.getX()) + (end2.getY() + 1);
+                                list[elem2 + 64].setImage(list[elem1 + 64].getImage());
+                                list[elem1 + 64].setImage(null);
+                                list[elem2 + 64].setOpacity(1);
+                            }
+                            else{
+                                thegame.Move(start2, end2, thegame.player2);
+                                elem1 = 8 * (end2.getX()) + (end2.getY() + 1);
+                                elem2 = 8 * (start2.getX()) + (start2.getY() + 1);
+                                list[elem2 + 64].setImage(list[elem1 + 64].getImage());
+                                list[elem1 + 64].setImage(null);
+                                list[elem2 + 64].setOpacity(1);
+                            }
+                        }
+                        else{
                             thegame.Move(start2, end2, thegame.player2);
                             elem1 = 8 * (start2.getX()) + (start2.getY() + 1);
                             elem2 = 8 * (end2.getX()) + (end2.getY() + 1);
@@ -245,14 +311,7 @@ public class HelloApplication extends Application {
                             list[elem1 + 64].setImage(null);
                             list[elem2 + 64].setOpacity(1);
                         }
-                        else{
-                            thegame.Move(start2, end2, thegame.player2);
-                            elem1 = 8 * (end2.getX()) + (end2.getY() + 1);
-                            elem2 = 8 * (start2.getX()) + (start2.getY() + 1);
-                            list[elem2 + 64].setImage(list[elem1 + 64].getImage());
-                            list[elem1 + 64].setImage(null);
-                            list[elem2 + 64].setOpacity(1);
-                        }
+
                     }
                 }
                 else{
@@ -266,10 +325,28 @@ public class HelloApplication extends Application {
 
 
                 i = 0;
+                try {
+                    if (thegame.Checkmate(thegame.player2.getColor())) {
+                        gameWinner = "player 2";
+                        endgame = true;
+                        i=5;
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             } catch (Exception e) {
                 error.setText(e.getMessage());
                 error.setOpacity(1);
                 hitAnimation.playFromStart();
+            }
+        }
+
+        if(i==5){
+            if(gameWinner.equals("player 1")){
+                System.out.println("Player 1 wins");
+            }
+            else{
+                System.out.println("Player 2 wins");
             }
         }
     }

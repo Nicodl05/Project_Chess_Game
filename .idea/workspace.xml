@@ -5,9 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="33232e96-533a-4223-8fd1-f294d8997586" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Chess/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Chess/Project_Chess_Game.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Chess/nim.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Chess/nim.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Chess/src/main/java/Auxiliary/Interaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/Chess/src/main/java/Auxiliary/Interaction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Chess/src/main/java/com/example/project_chess_game/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/Chess/src/main/java/com/example/project_chess_game/HelloApplication.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -117,7 +118,7 @@
       <workItem from="1679236631129" duration="4000" />
       <workItem from="1679236663334" duration="567000" />
       <workItem from="1679237392456" duration="603000" />
-      <workItem from="1679238036458" duration="252000" />
+      <workItem from="1679238036458" duration="8016000" />
     </task>
     <servers />
   </component>
@@ -138,10 +139,11 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
+        <line-breakpoint enabled="true" type="java-field">
           <url>file://$PROJECT_DIR$/Chess/src/main/java/com/example/project_chess_game/HelloApplication.java</url>
-          <line>25</line>
-          <option name="timeStamp" value="2" />
+          <line>27</line>
+          <properties field="i" class="com.example.project_chess_game.HelloApplication" />
+          <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

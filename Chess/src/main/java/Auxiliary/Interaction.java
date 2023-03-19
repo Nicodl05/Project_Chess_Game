@@ -318,8 +318,7 @@ public class Interaction {
                 if (board.getSpot(i, j).getPiece() != null) {
                     if (board.getSpot(i, j).getPiece().getColor() == color_player && board.getSpot(i, j).getPiece().getType() == "King") {
                         // Check all of the available moves of the king
-                        availables = board.getSpot(i, j).getPiece().available_spot(board, board.getSpot(i, j),
-                                attacked_spot(color_player));
+                        availables=(board.getSpot(i, j).getPiece().available_spot(board, board.getSpot(i, j),attacked_spot(color_player)));
                     }
                 }
             }
@@ -330,8 +329,8 @@ public class Interaction {
     public boolean Checkmate(boolean color_player) throws Exception {
         List<Spot> availables = new ArrayList<>();
         // If the king is in check AND has no move
-        System.out.println("Check: in" );;
-        if (Check_King(color_player) == true && Get_available_Move_King(color_player).size() == 0) {
+
+        if (Check_King(color_player) == true && Get_available_Move_King(color_player).size() == 1) {
 
             // WHAT WE WANT: Try all of available move with other pieces and see if he is
             // still in check
