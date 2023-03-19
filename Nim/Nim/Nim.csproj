@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <ApplicationIcon>Assets\iconNim.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Views\background.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Assets\iconNim.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Theme\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Views\background.jpg" />
+  </ItemGroup>
+
+</Project>
