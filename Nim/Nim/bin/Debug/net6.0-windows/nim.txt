@@ -1,3 +1,0 @@
-Ordinateur,Adrien
-Noir,Blanc
-Noir
