@@ -1,7 +1,7 @@
 # Échecs casse-gueule
 
 Projet de la mineure Création Numérique de 4ème année à l'**ECE Paris**.
-Il s'agit d'un ensemble de petits jeux vidéos, chacun réalisé avec un langage de programmation différent et qui s'appelent les uns les autres à la manière de microservices applicatifs.
+Il s'agit d'un ensemble de petits jeux vidéo, chacun réalisé avec un langage de programmation différent et qui s'appellent les uns les autres à la manière de microservices applicatifs.
 
 ## Idée de départ
 
@@ -9,7 +9,7 @@ L'équipe d'origine ayant débuté ce projet au premier semestre avait pour idé
 
 Ils n'ont eu le temps de réaliser que le jeu d'échecs, et nous avons décidé de continuer le projet en en changeant la suite.
 
-Les membres de l'équipe du second semestre ayant chacun des idées différentes, nous avons décidé de créer plusieurs jeux, chacun avec un langage différent, et de les faire s'appeler les uns les autres à la manière de microservices applicatifs. Ansi, chaque membre a pu travailler sur un mini-projet qui lui tenait à coeur, et nous avons donc pris la décision de changer tout d'abord le jeu d'échecs pour du joueur contre ordinateur, puis de remplacer le jeu de combat par une série de mini-jeux se jouant contre l'ordinateur.
+Les membres de l'équipe du second semestre ayant chacun des idées différentes, nous avons décidé de créer plusieurs jeux, chacun avec un langage différent, et de les faire s'appeler les uns les autres à la manière de microservices applicatifs. Ainsi, chaque membre a pu travailler sur un mini-projet qui lui tenait à cœur, et nous avons donc pris la décision de changer tout d'abord le jeu d'échecs pour du joueur contre ordinateur, puis de remplacer le jeu de combat par une série de mini-jeux se jouant contre l'ordinateur.
 
 ## Liste des jeux et langages utilisés
 
@@ -28,7 +28,7 @@ Chaque duel entre deux pièces de niveau équivalent donne lieu à un mini-jeu, 
 #### Réalisation du jeu d'échecs
 
 - [Abdelaziz Abdelkefi](https://github.com/Azizo27)
-- [Maelys Bourgeat](https://github.com/Maelys92)
+- [Maëlys Bourgeat](https://github.com/Maelys92)
 - [Nicolas Dreyfus--Laquièze](https://github.com/Nicodl05)
 - [Arthur Fournier](https://github.com/space192)
 
@@ -40,7 +40,7 @@ Le jeu de Pierre Feuille Ciseaux est réalisé en **Python** avec la librairie *
 
 La particularité de ce jeu est qu'il se joue en utilisant la caméra de l'ordinateur. Le joueur doit donc se placer devant la caméra et faire un geste de la main pour jouer. Le jeu détecte ensuite le geste et le transforme en pierre, feuille ou ciseaux.
 
-Le jeu se joue en 3 manches, et le vainqueur est celui qui a gagné le plus de manches.
+Le jeu se joue en 3 manches, le vainqueur est celui qui a gagné le plus de manches.
 
 #### Réalisation du jeu de Pierre Feuille Ciseaux
 
@@ -103,7 +103,7 @@ Chaque mini-jeu dispose d'un `.exe` qui permet de lancer le jeu. Les mini-jeux s
 
 ## Conclusion
 
-Cet embitieux projet nous a permis de chacun travailler sur un mini-projet qui nous tenait à coeur, et de pratiquer des langages de programmation sur lesquels nous voulions aquérir plus d'expérience. Chacun a ainsi pu faire ce qu'il voulait, tout en cherchant à faire quelque chose de cohérent avec le reste du projet.
+Cet ambitieux projet nous a permis de chacun travailler sur un mini-projet qui nous tenait à cœur, et de pratiquer des langages de programmation sur lesquels nous voulions acquérir plus d'expérience. Chacun a ainsi pu faire ce qu'il voulait, tout en cherchant à faire quelque chose de cohérent avec le reste du projet.
 
 La cohésion de l'équipe a été un facteur clé de la réussite de ce projet. Nous avons pu nous répartir les tâches de manière équitable, et nous avons pu nous aider mutuellement lorsqu'un problème se posait.
 
@@ -113,7 +113,7 @@ Nous sommes très satisfaits du résultat final, et heureux d'avoir pu réaliser
 
 - [Abdelaziz Abdelkefi](https://github.com/Azizo27)
 - [Adrien Blair](https://github.com/Ahddry)
-- [Maelys Bourgeat](https://github.com/Maelys92)
+- [Maëlys Bourgeat](https://github.com/Maelys92)
 - [Carole-Anne Cos](https://github.com/caro0031)
 - [Lucas Couffin](https://github.com/LucasCouffin)
 - [Nicolas Dreyfus--Laquièze](https://github.com/Nicodl05)
