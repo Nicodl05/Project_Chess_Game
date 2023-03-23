@@ -23,7 +23,7 @@ La plupart des règles du jeu d'échecs sont implémentées, mais il manque enco
 
 Chaque duel entre deux pièces de niveau équivalent donne lieu à un mini-jeu, qui est choisi aléatoirement parmi la liste des mini-jeux existants. Le vainqueur du duel remporte la pièce du perdant.
 
-> Nous avons choisi de ne lancer les mini-jeux que lorsque les pièces sont de niveau équivalent, afin de ne pas rendre une partie trop longue et pour éviter d'avoir par exemple une **Dame** qui se fait battre par un **Pion** alors qu'elle l'attaquait.
+> Nous avons choisi de ne lancer les mini-jeux que lorsque les pièces sont de niveau équivalent, afin de ne pas rendre une partie trop longue et pour éviter d'avoir par exemple une **Reine** qui se fait battre par un **Pion** alors qu'elle l'attaquait.
 
 #### Réalisation du jeu d'échecs
 
@@ -36,7 +36,7 @@ Chaque duel entre deux pièces de niveau équivalent donne lieu à un mini-jeu, 
 
 #### Présentation du jeu de Pierre Feuille Ciseaux
 
-Le jeu de Pierre Feuille Ciseaux est réalisé en **Python** avec la librairie **Tensorflow**. Il est jouable en mode joueur contre ordinateur.
+Le jeu de Pierre Feuille Ciseaux est réalisé en **Python** avec la librairie **Tensorflow**. **Tensorflow** est une librairie de machine learning qui permet de créer des réseaux de neurones.
 
 La particularité de ce jeu est qu'il se joue en utilisant la caméra de l'ordinateur. Le joueur doit donc se placer devant la caméra et faire un geste de la main pour jouer. Le jeu détecte ensuite le geste et le transforme en pierre, feuille ou ciseaux.
 
@@ -50,7 +50,7 @@ Le jeu se joue en 3 manches, et le vainqueur est celui qui a gagné le plus de m
 
 #### Présentation du jeu du Snake
 
-Le jeu du Snake est réalisé en **Python** avec la librairie **Pytorch**.
+Le jeu du Snake est réalisé en **Python** avec la librairie **Pytorch**. **Pytorch** est une librairie de machine learning qui permet de créer des réseaux de neurones
 
 Au lancement du jeu, deux instances du jeu sont lancées en parallèle : une instance pour le joueur, et une instance pour l'ordinateur.
 
@@ -61,13 +61,13 @@ Le jeu se termine lorsque l'un des deux joueurs meurt, et le vainqueur est celui
 #### Réalisation du jeu du Snake
 
 - [Sarah Fages](https://github.com/SarahFages)
-- [Lucas Couffin](https://github.com/)
+- [Lucas Couffin](https://github.com/LucasCouffin)
 
 ### Jeu de Nim
 
 #### Présentation du jeu de Nim
 
-Le jeu de Nim est réalisé en **C#** avec la librairie **WPF**. Il est jouable en mode joueur contre ordinateur.
+Le jeu de Nim est réalisé en **C#** avec la librairie **WPF**. **WPF** est une librairie de création d'interfaces graphiques pour **C#**.
 
 Le jeu de Nim est un jeu de stratégie combinatoire se jouant à deux joueurs. Il se joue avec des bâtons disposés en tas. Chaque joueur, à son tour, doit retirer un à trois bâtons du tas. Le joueur qui prend le dernier bâton perd la partie.
 
@@ -115,7 +115,7 @@ Nous sommes très satisfaits du résultat final, et heureux d'avoir pu réaliser
 - [Adrien Blair](https://github.com/Ahddry)
 - [Maelys Bourgeat](https://github.com/Maelys92)
 - [Carole-Anne Cos](https://github.com/caro0031)
-- [Lucas Couffin](https://github.com/)
+- [Lucas Couffin](https://github.com/LucasCouffin)
 - [Nicolas Dreyfus--Laquièze](https://github.com/Nicodl05)
 - [Sarah Fages](https://github.com/SarahFages)
 - [Arthur Fournier](https://github.com/space192)
