@@ -27,6 +27,28 @@ public class Board {
         return board[x][y];
     }
 
+    public List <Spot> getSpotList() {
+        List <Spot> list = new ArrayList <>();
+        try{
+            for (int i = 0; i < 8; i++) {
+                for (int j = 0; j < 8; j++) {
+                    if(board[i][j].getPiece() != null){
+                        if(!board[i][j].getPiece().getColor())
+                        {
+                            list.add(board[i][j]);
+                        }
+                    }
+
+                }
+            }
+        }
+        catch (Exception exception){
+            System.out.println("getSpotList: " + exception);
+        }
+
+        return list;
+    }
+
     public void resetBoard() {
         ///White Pieces
 

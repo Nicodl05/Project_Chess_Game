@@ -10,8 +10,8 @@ public class Interaction {
 
     public Interaction() {
         this.board = new Board();
-        this.player1 = new Player(true, "Aziz");
-        this.player2 = new Player(false, "Selim");
+        this.player1 = new Player(true, "Joueur");
+        this.player2 = new Player(false, "Ordinateur");
     }
 
     public void Game() throws Exception {

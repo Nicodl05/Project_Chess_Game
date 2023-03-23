@@ -8,7 +8,7 @@ import java.util.List;
 
 public class King extends Piece{
     public King(boolean color, boolean hasmoved) {
-        super(color, 0, hasmoved, "King");
+        super(color, 10, hasmoved, "King");
     }
 
 
