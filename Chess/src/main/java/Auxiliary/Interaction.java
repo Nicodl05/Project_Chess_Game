@@ -24,11 +24,11 @@ public class Interaction {
             start = player1.ChooseSpotStart(board, attacked_spot(player1.getColor()));
             end = player1.ChooseSpotEnd(board, start, attacked_spot(player1.getColor()));
             System.out.println("game");
-            if(end.getPiece()!=null){
+            if (end.getPiece() != null) {
                 System.out.println("in");
-               if(end.getPiece().getType()!=null){
-                   System.out.println("fight");
-               }
+                if (end.getPiece().getType() != null) {
+                    System.out.println("fight");
+                }
             }
             Move(start, end, player1);
             board.displayBoard();
@@ -38,8 +38,8 @@ public class Interaction {
             }
             start2 = player2.ChooseSpotStart(board, attacked_spot(player2.getColor()));
             end2 = player2.ChooseSpotEnd(board, start2, attacked_spot(player2.getColor()));
-            if(end2.getPiece()!=null){
-                if(end2.getPiece().getType()!=null){
+            if (end2.getPiece() != null) {
+                if (end2.getPiece().getType() != null) {
                     System.out.println("fight");
                 }
             }
@@ -66,7 +66,7 @@ public class Interaction {
                     }
 
                     // Checks if there's a case of castle
-                    if (start.getPiece().getType() == "King" &&  !start.getPiece().GetHasmoved()) {
+                    if (start.getPiece().getType() == "King" && !start.getPiece().GetHasmoved()) {
                         if (start.getPiece().getColor()) {
                             if (start.getX() == 7 && start.getY() == 4 && end.getX() == 7 && end.getY() == 2 && board.getSpot(7, 0).getPiece() != null && board.getSpot(7, 0).getPiece().getType() == "Rook" && !board.getSpot(7, 0).getPiece().GetHasmoved()) {
                                 board.getSpot(7, 3).setPiece(board.getSpot(7, 0).getPiece());
@@ -77,9 +77,8 @@ public class Interaction {
                                 board.getSpot(7, 5).setPiece(board.getSpot(7, 7).getPiece());
                                 board.getSpot(7, 7).setPiece(null);
                             }
-                        }
-                        else if (!start.getPiece().getColor() ) {
-                            if (start.getX() == 0 && start.getY() == 4 && end.getX() == 0 && end.getY() == 2&& board.getSpot(0, 0).getPiece() != null && board.getSpot(0, 0).getPiece().getType() == "Rook" && !board.getSpot(0, 0).getPiece().GetHasmoved()) {
+                        } else if (!start.getPiece().getColor()) {
+                            if (start.getX() == 0 && start.getY() == 4 && end.getX() == 0 && end.getY() == 2 && board.getSpot(0, 0).getPiece() != null && board.getSpot(0, 0).getPiece().getType() == "Rook" && !board.getSpot(0, 0).getPiece().GetHasmoved()) {
                                 board.getSpot(0, 3).setPiece(board.getSpot(0, 0).getPiece());
                                 board.getSpot(0, 0).setPiece(null);
                             } else if (start.getX() == 0 && start.getY() == 4 && end.getX() == 0 && end.getY() == 6 && board.getSpot(0, 7).getPiece() != null && board.getSpot(0, 7).getPiece().getType() == "Rook" && !board.getSpot(0, 7).getPiece().GetHasmoved()) {
@@ -92,8 +91,6 @@ public class Interaction {
 
 
                     // i want to check if the new spot is attacked by the other player
-
-
 
 
                     // Set new piece
@@ -119,7 +116,7 @@ public class Interaction {
                 System.out.println(player1.getName() + " has won");
             }
             System.out.println("The king of player who just did the move " + player.getName() + " with ");
-            if(player.getColor())
+            if (player.getColor())
                 System.out.println(" white is in check");
             else
                 System.out.println(" black is in check");
@@ -129,7 +126,7 @@ public class Interaction {
                 System.out.println(player2.getName() + " has won");
             }
             System.out.print("The king of player who just did the move " + player.getName() + " with ");
-            if(player.getColor())
+            if (player.getColor())
                 System.out.println(" white is Not in check \n");
             else
                 System.out.println(" black is Not in check");
@@ -184,7 +181,7 @@ public class Interaction {
                         if (y < 7) {
                             if (board.getSpot(x, y + 1).getPiece() == null
                                     || board.getSpot(x, y + 1).getPiece().getColor() != board.getSpot(i, j).getPiece()
-                                            .getColor()) {
+                                    .getColor()) {
                                 attacked_spot.add(board.getSpot(x, y + 1));
                             }
                         }
@@ -193,7 +190,7 @@ public class Interaction {
                         if (y > 0) {
                             if (board.getSpot(x, y - 1).getPiece() == null
                                     || board.getSpot(x, y - 1).getPiece().getColor() != board.getSpot(i, j).getPiece()
-                                            .getColor()) {
+                                    .getColor()) {
                                 attacked_spot.add(board.getSpot(x, y - 1));
                             }
                         }
@@ -202,7 +199,7 @@ public class Interaction {
                         if (x < 7) {
                             if (board.getSpot(x + 1, y).getPiece() == null
                                     || board.getSpot(x + 1, y).getPiece().getColor() != board.getSpot(i, j).getPiece()
-                                            .getColor()) {
+                                    .getColor()) {
                                 attacked_spot.add(board.getSpot(x + 1, y));
                             }
                         }
@@ -211,7 +208,7 @@ public class Interaction {
                         if (x > 0) {
                             if (board.getSpot(x - 1, y).getPiece() == null
                                     || board.getSpot(x - 1, y).getPiece().getColor() != board.getSpot(i, j).getPiece()
-                                            .getColor()) {
+                                    .getColor()) {
                                 attacked_spot.add(board.getSpot(x - 1, y));
                             }
                         }
@@ -220,7 +217,7 @@ public class Interaction {
                         if (x > 0 && y < 7) {
                             if (board.getSpot(x - 1, y + 1).getPiece() == null
                                     || board.getSpot(x - 1, y + 1).getPiece().getColor() != board.getSpot(i, j)
-                                            .getPiece().getColor()) {
+                                    .getPiece().getColor()) {
                                 attacked_spot.add(board.getSpot(x - 1, y + 1));
                             }
                         }
@@ -229,7 +226,7 @@ public class Interaction {
                         if (x > 0 && y > 0) {
                             if (board.getSpot(x - 1, y - 1).getPiece() == null
                                     || board.getSpot(x - 1, y - 1).getPiece().getColor() != board.getSpot(i, j)
-                                            .getPiece().getColor()) {
+                                    .getPiece().getColor()) {
                                 attacked_spot.add(board.getSpot(x - 1, y - 1));
                             }
 
@@ -239,7 +236,7 @@ public class Interaction {
                         if (x < 7 && y > 0) {
                             if (board.getSpot(x + 1, y - 1).getPiece() == null
                                     || board.getSpot(x + 1, y - 1).getPiece().getColor() != board.getSpot(i, j)
-                                            .getPiece().getColor()) {
+                                    .getPiece().getColor()) {
                                 attacked_spot.add(board.getSpot(x + 1, y - 1));
                             }
                         }
@@ -248,7 +245,7 @@ public class Interaction {
                         if (x < 7 && y < 7) {
                             if (board.getSpot(x + 1, y + 1).getPiece() == null
                                     || board.getSpot(x + 1, y + 1).getPiece().getColor() != board.getSpot(i, j)
-                                            .getPiece().getColor()) {
+                                    .getPiece().getColor()) {
                                 attacked_spot.add(board.getSpot(x + 1, y + 1));
                             }
                         }
@@ -307,11 +304,50 @@ public class Interaction {
         return false;
     }
 
+    public Spot getKingSpot(boolean color_player) throws Exception {
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                // We find my king spot
+                if (board.getSpot(i, j).getPiece() != null) {
+                    if (board.getSpot(i, j).getPiece().getColor() == color_player && board.getSpot(i, j).getPiece().getType() == "King") {
+                        return board.getSpot(i, j);
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
     public List<Spot> Get_available_Move_King(boolean color_player) throws Exception {
 
         List<Spot> availables = new ArrayList<>();
-
+        Spot king_spot = getKingSpot(color_player);
         // This first loop is to find all availables moves of King
+        if (board.getSpot(king_spot.getX() + 1, king_spot.getY()).getPiece() == null) {
+            availables.add(board.getSpot(king_spot.getX() + 1, king_spot.getY()));
+        }
+        if (board.getSpot(king_spot.getX() - 1, king_spot.getY()).getPiece() == null) {
+            availables.add(board.getSpot(king_spot.getX() - 1, king_spot.getY()));
+        }
+        if (board.getSpot(king_spot.getX(), king_spot.getY() + 1).getPiece() == null) {
+            availables.add(board.getSpot(king_spot.getX(), king_spot.getY() + 1));
+        }
+        if (board.getSpot(king_spot.getX(), king_spot.getY() - 1).getPiece() == null) {
+            availables.add(board.getSpot(king_spot.getX(), king_spot.getY() - 1));
+        }
+        if (board.getSpot(king_spot.getX() + 1, king_spot.getY() + 1).getPiece() == null) {
+            availables.add(board.getSpot(king_spot.getX() + 1, king_spot.getY() + 1));
+        }
+        if (board.getSpot(king_spot.getX() + 1, king_spot.getY() - 1).getPiece() == null) {
+            availables.add(board.getSpot(king_spot.getX() + 1, king_spot.getY() - 1));
+        }
+        if (board.getSpot(king_spot.getX() - 1, king_spot.getY() + 1).getPiece() == null) {
+            availables.add(board.getSpot(king_spot.getX() - 1, king_spot.getY() + 1));
+        }
+        if (board.getSpot(king_spot.getX() - 1, king_spot.getY() - 1).getPiece() == null) {
+            availables.add(board.getSpot(king_spot.getX() - 1, king_spot.getY() - 1));
+        }
+        /*
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 // We find my king spot
@@ -322,7 +358,7 @@ public class Interaction {
                     }
                 }
             }
-        }
+        }*/
         return availables;
     }
 
@@ -330,11 +366,12 @@ public class Interaction {
         List<Spot> availables = new ArrayList<>();
         // If the king is in check AND has no move
 
-        if (Check_King(color_player) == true && Get_available_Move_King(color_player).size() == 1) {
+        if (Check_King(color_player) == true && Get_available_Move_King(color_player).size() == 0) {
 
+            // If the king is in check AND has no move
             // WHAT WE WANT: Try all of available move with other pieces and see if he is
             // still in check
-
+            Spot king_spot = getKingSpot(color_player);
             for (int i = 0; i < 8; i++) {
                 for (int j = 0; j < 8; j++) {
                     // If it is one of our piece
@@ -348,9 +385,9 @@ public class Interaction {
                 }
             }
             System.out.println("The opponent is in check And King can't move, all available moves to try from other pieces: " + availables.size());
-            if(availables.size()==0)
+            if (availables.size() == 0)
                 return true;
-            else{
+            else {
                 for (int i = 0; i < availables.size(); i++) {
                     availables.get(i).DisplayCoordinate();
                 }

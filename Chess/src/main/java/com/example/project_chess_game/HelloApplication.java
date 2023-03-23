@@ -184,7 +184,7 @@ public class HelloApplication extends Application {
                 }
                 if(end.getPiece()!=null){
                     if(end.getPiece().getType()!=null){
-                        if(end.getPiece().getType()==start.getPiece().getType()){
+                        if(end.getPiece().getValue()==start.getPiece().getValue()){
                             writeFile();
                             System.out.println("Piece j1 : " + start.getPiece().getType());
                             System.out.println("Piece j2 : " + end.getPiece().getType());
@@ -275,7 +275,7 @@ public class HelloApplication extends Application {
                 }
                 if(end2.getPiece()!=null){
                     if(end2.getPiece().getType()!=null){
-                        if(start2.getPiece().getType()==end2.getPiece().getType()){
+                        if(start2.getPiece().getValue()==end2.getPiece().getValue()){
                             writeFile();
                             System.out.println("Piece j1 : " + start2.getPiece().getType());
                             System.out.println("Piece j2 : " + end2.getPiece().getType());
