@@ -72,7 +72,7 @@ public class HelloApplication extends Application {
 
     }
 
-    public void writeFile() {
+    public void writeFile(int joueurAttaquant) {
         String filePath = "nim.txt";
 
         try {
@@ -80,7 +80,10 @@ public class HelloApplication extends Application {
             FileWriter writer = new FileWriter(filePath);
 
             // Write the new content to the file
-            writer.write("Ordinateur,Adrien\nNoir,Blanc\n");
+            if (joueurAttaquant == 1)
+                writer.write("Ordinateur,Adrien\nNoir,Blanc\n");
+            else
+                writer.write("Adrien,Ordinateur\nBlanc,Noir\n");
 
             // Close the file
             writer.close();
@@ -126,7 +129,6 @@ public class HelloApplication extends Application {
         try {
             // Create a process builder for the executable file
             ProcessBuilder pb = new ProcessBuilder("Nim.exe");
-
             // Start the process
             Process process = pb.start();
 
@@ -140,21 +142,45 @@ public class HelloApplication extends Application {
         }
     }
 
+    public void startTirALArc() {
+        try {
+            // Create a process builder for the executable file
+            Process p = Runtime.getRuntime().exec("python tir_a_larc.py");
+            int exitCode = p.waitFor();
+
+            // Print the exit code of the process
+            System.out.println("Exit code: " + exitCode);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void startPierreFeuilleCiseauxPuits() {
+        try {
+            // Create a process builder for the executable file
+            Process p = Runtime.getRuntime().exec("python play.py");
+            int exitCode = p.waitFor();
+            // Print the exit code of the process
+            System.out.println("Exit code: " + exitCode);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
     public void miniGames() {
         Random random = new Random();
         int randomNumber = random.nextInt(3) + 1;
-       /* switch (randomNumber){
-            case 1:
-                startNimGame();
-                break;
-            case 2:
-                break;
-            case 3:
-                break;
-            case default:
-                break;
-        }*/
-        startNimGame();
+        System.out.println("Jeu : " + randomNumber);
+        switch (randomNumber)
+        {
+            case 1 -> startNimGame();
+            case 2 -> startTirALArc();
+            case 3 -> startPierreFeuilleCiseauxPuits();
+            default -> {
+            }
+        }
+        //startNimGame();
     }
     public void pick(String id) {
         int temp, elem1, elem2;
@@ -187,15 +213,10 @@ public class HelloApplication extends Application {
                 if(end.getPiece()!=null){
                     if(end.getPiece().getType()!=null){
                         if(end.getPiece().getValue()==start.getPiece().getValue()){
-                            writeFile();
+                            writeFile(i);
                             System.out.println("Piece j1 : " + start.getPiece().getType());
                             System.out.println("Piece j2 : " + end.getPiece().getType());
-                            if(end.getPiece().getValue()<3){
-                                startNimGame();
-                            }
-                            else{
-                                miniGames();
-                            }
+                            miniGames();
                             String winner = retrievewinner();
                             if(winner.equals("Blanc")){
                                 thegame.Move(start, end, thegame.player1);
@@ -278,15 +299,10 @@ public class HelloApplication extends Application {
                 if(end2.getPiece()!=null){
                     if(end2.getPiece().getType()!=null){
                         if(start2.getPiece().getValue()==end2.getPiece().getValue()){
-                            writeFile();
+                            writeFile(i);
                             System.out.println("Piece j1 : " + start2.getPiece().getType());
                             System.out.println("Piece j2 : " + end2.getPiece().getType());
-                            if(end.getPiece().getValue()<3){
-                                startNimGame();
-                            }
-                            else{
-                                miniGames();
-                            }
+                            miniGames();
                             String winner = retrievewinner();
                             if(winner.equals("Noir")){
                                 thegame.Move(start2, end2, thegame.player2);
@@ -382,14 +398,10 @@ public class HelloApplication extends Application {
                 if (end.getPiece() != null) {
                     if (end.getPiece().getType() != null) {
                         if (end.getPiece().getType() == start.getPiece().getType()) {
-                            writeFile();
+                            writeFile(i);
                             System.out.println("Piece j1 : " + start.getPiece().getType());
                             System.out.println("Piece j2 : " + end.getPiece().getType());
-                            if (end.getPiece().getValue() < 3) {
-                                startNimGame();
-                            } else {
-                                miniGames();
-                            }
+                            miniGames();
                             String winner = retrievewinner();
                             if (winner.equals("Blanc")) {
                                 thegame.Move(start, end, thegame.player1);
@@ -464,14 +476,10 @@ public class HelloApplication extends Application {
                 if (end2.getPiece() != null) {
                     if (end2.getPiece().getType() != null) {
                         if (start2.getPiece().getType() == end2.getPiece().getType()) {
-                            writeFile();
+                            writeFile(i);
                             System.out.println("Piece j1 : " + start2.getPiece().getType());
                             System.out.println("Piece j2 : " + end2.getPiece().getType());
-                            if (end.getPiece().getValue() < 3) {
-                                startNimGame();
-                            } else {
-                                miniGames();
-                            }
+                            miniGames();
                             String winner = retrievewinner();
                             if (winner.equals("Noir")) {
                                 thegame.Move(start2, end2, thegame.player2);
