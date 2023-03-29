@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import Auxiliary.Interaction;
 import Auxiliary.Spot;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Random;
@@ -71,7 +72,7 @@ public class HelloApplication extends Application {
 
     }
 
-    public void writeFile(){
+    public void writeFile() {
         String filePath = "nim.txt";
 
         try {
@@ -84,13 +85,14 @@ public class HelloApplication extends Application {
             // Close the file
             writer.close();
 
-            System.out.println("Successfully wrote to the file.");
+
         } catch (IOException e) {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
     }
-    public String retrievewinner(){
+
+    public String retrievewinner() {
         String filePath = "nim.txt";
         String lastWord = "";
 
@@ -104,7 +106,7 @@ public class HelloApplication extends Application {
                 String line = scanner.nextLine();
                 String[] lineWords = line.split(",");
                 if (lineWords.length > 0) {
-                    lastWord = lineWords[lineWords.length-1];
+                    lastWord = lineWords[lineWords.length - 1];
                 }
             }
 
@@ -120,7 +122,7 @@ public class HelloApplication extends Application {
         return lastWord;
     }
 
-    public void startNimGame(){
+    public void startNimGame() {
         try {
             // Create a process builder for the executable file
             ProcessBuilder pb = new ProcessBuilder("Nim.exe");
@@ -138,7 +140,7 @@ public class HelloApplication extends Application {
         }
     }
 
-    public void miniGames(){
+    public void miniGames() {
         Random random = new Random();
         int randomNumber = random.nextInt(3) + 1;
        /* switch (randomNumber){
@@ -350,6 +352,186 @@ public class HelloApplication extends Application {
             }
         }
     }
+    public void ia(String id) {
+        int temp, elem1, elem2;
+        if (i == 0) {
+            try {
+                start = thegame.player1.ChooseSpotStart_graph(thegame.board,
+                        thegame.attacked_spot(thegame.player1.getColor()), id);
+                available = start.getPiece().available_spot(thegame.board, start, thegame.attacked_spot(thegame.player1.getColor()));
+
+                for (Spot elem : available) {
+                    temp = 8 * (elem.getX()) + (elem.getY() + 1);
+                    list[temp].setImage(pieces[12]);
+                    list[temp].setOpacity(0.5);
+                }
+                i++;
+            } catch (Exception e) {
+                error.setText(e.getMessage());
+                error.setOpacity(1);
+                hitAnimation.playFromStart();
+            }
+        } else if (i == 1) {
+            try {
+                end = thegame.player1.ChooseSpotEnd_graph(thegame.board, start,
+                        thegame.attacked_spot(thegame.player1.getColor()), id);
+                for (Spot elem : available) {
+                    temp = 8 * (elem.getX()) + (elem.getY() + 1);
+                    list[temp].setImage(null);
+                }
+                if (end.getPiece() != null) {
+                    if (end.getPiece().getType() != null) {
+                        if (end.getPiece().getType() == start.getPiece().getType()) {
+                            writeFile();
+                            System.out.println("Piece j1 : " + start.getPiece().getType());
+                            System.out.println("Piece j2 : " + end.getPiece().getType());
+                            if (end.getPiece().getValue() < 3) {
+                                startNimGame();
+                            } else {
+                                miniGames();
+                            }
+                            String winner = retrievewinner();
+                            if (winner.equals("Blanc")) {
+                                thegame.Move(start, end, thegame.player1);
+                                elem1 = 8 * (start.getX()) + (start.getY() + 1);
+                                elem2 = 8 * (end.getX()) + (end.getY() + 1);
+                                list[elem2 + 64].setImage(list[elem1 + 64].getImage());
+                                list[elem1 + 64].setImage(null);
+                                list[elem2 + 64].setOpacity(1);
+                            } else {
+                                thegame.Move(end, start, thegame.player1);
+                                elem1 = 8 * (end.getX()) + (end.getY() + 1);
+                                elem2 = 8 * (start.getX()) + (start.getY() + 1);
+                                list[elem2 + 64].setImage(list[elem1 + 64].getImage());
+                                list[elem1 + 64].setImage(null);
+                                list[elem2 + 64].setOpacity(1);
+
+                            }
+                        } else {
+                            thegame.Move(start, end, thegame.player1);
+                            elem1 = 8 * (start.getX()) + (start.getY() + 1);
+                            elem2 = 8 * (end.getX()) + (end.getY() + 1);
+                            list[elem2 + 64].setImage(list[elem1 + 64].getImage());
+                            list[elem1 + 64].setImage(null);
+                            list[elem2 + 64].setOpacity(1);
+                        }
+
+                    }
+                }
+                if (end.getPiece() == null) {
+                    thegame.Move(start, end, thegame.player1);
+                    elem1 = 8 * (start.getX()) + (start.getY() + 1);
+                    elem2 = 8 * (end.getX()) + (end.getY() + 1);
+                    list[elem2 + 64].setImage(list[elem1 + 64].getImage());
+                    list[elem1 + 64].setImage(null);
+                    list[elem2 + 64].setOpacity(1);
+
+                }
+                i++;
+            } catch (Exception e) {
+                error.setText(e.getMessage());
+                error.setOpacity(1);
+                hitAnimation.playFromStart();
+            }
+            try {
+                if (thegame.Checkmate(thegame.player2.getColor())) {
+                    gameWinner = "player 1";
+                    endgame = true;
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+        if (i == 2) {
+            try {
+                start2 = thegame.player2.ChooseSpotStart_graphOrdi(thegame.board,
+                        thegame.attacked_spot(thegame.player2.getColor()));
+
+                available = start2.getPiece().available_spot(thegame.board, start2,
+                        thegame.attacked_spot(thegame.player2.getColor()));
+                i++;
+            } catch (Exception e) {
+                error.setText(e.getMessage());
+                error.setOpacity(1);
+                hitAnimation.playFromStart();
+            }
+
+        } else if (i == 3) {
+            try {
+                end2 = thegame.player2.ChooseSpotEnd_graphOrdi(thegame.board, start2,
+                        thegame.attacked_spot(thegame.player2.getColor()));
+                if (end2.getPiece() != null) {
+                    if (end2.getPiece().getType() != null) {
+                        if (start2.getPiece().getType() == end2.getPiece().getType()) {
+                            writeFile();
+                            System.out.println("Piece j1 : " + start2.getPiece().getType());
+                            System.out.println("Piece j2 : " + end2.getPiece().getType());
+                            if (end.getPiece().getValue() < 3) {
+                                startNimGame();
+                            } else {
+                                miniGames();
+                            }
+                            String winner = retrievewinner();
+                            if (winner.equals("Noir")) {
+                                thegame.Move(start2, end2, thegame.player2);
+                                elem1 = 8 * (start2.getX()) + (start2.getY() + 1);
+                                elem2 = 8 * (end2.getX()) + (end2.getY() + 1);
+                                list[elem2 + 64].setImage(list[elem1 + 64].getImage());
+                                list[elem1 + 64].setImage(null);
+                                list[elem2 + 64].setOpacity(1);
+                            } else {
+                                thegame.Move(start2, end2, thegame.player2);
+                                elem1 = 8 * (end2.getX()) + (end2.getY() + 1);
+                                elem2 = 8 * (start2.getX()) + (start2.getY() + 1);
+                                list[elem2 + 64].setImage(list[elem1 + 64].getImage());
+                                list[elem1 + 64].setImage(null);
+                                list[elem2 + 64].setOpacity(1);
+                            }
+                        } else {
+                            thegame.Move(start2, end2, thegame.player2);
+                            elem1 = 8 * (start2.getX()) + (start2.getY() + 1);
+                            elem2 = 8 * (end2.getX()) + (end2.getY() + 1);
+                            list[elem2 + 64].setImage(list[elem1 + 64].getImage());
+                            list[elem1 + 64].setImage(null);
+                            list[elem2 + 64].setOpacity(1);
+                        }
+
+                    }
+                } else {
+                    thegame.Move(start2, end2, thegame.player2);
+                    elem1 = 8 * (start2.getX()) + (start2.getY() + 1);
+                    elem2 = 8 * (end2.getX()) + (end2.getY() + 1);
+                    list[elem2 + 64].setImage(list[elem1 + 64].getImage());
+                    list[elem1 + 64].setImage(null);
+                    list[elem2 + 64].setOpacity(1);
+                }
+                i = 0;
+                try {
+                    if (thegame.Checkmate(thegame.player2.getColor())) {
+                        gameWinner = "player 2";
+                        endgame = true;
+                        i = 5;
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            } catch (Exception e) {
+                error.setText(e.getMessage());
+                error.setOpacity(1);
+                hitAnimation.playFromStart();
+            }
+        }
+
+        if (i == 5) {
+            if (gameWinner.equals("player 1")) {
+                System.out.println("Player 1 wins");
+            } else {
+                System.out.println("Player 2 wins");
+            }
+        }
+    }
+
 
     public static void main(String[] args) {
         launch();

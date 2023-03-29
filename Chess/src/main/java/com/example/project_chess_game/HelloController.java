@@ -15,6 +15,6 @@ public class HelloController {
     @FXML
     protected void onClick(MouseEvent event) {
         ImageView temp = (ImageView) event.getSource();
-        this.helloApplication.pick(temp.getId().toString());
+        this.helloApplication.ia(temp.getId().toString());
     }
 }

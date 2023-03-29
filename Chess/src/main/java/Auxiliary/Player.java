@@ -2,6 +2,7 @@ package Auxiliary;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Player {
@@ -52,7 +53,7 @@ public class Player {
         } while ((column != 'a' && column != 'b' && column != 'c' && column != 'd' && column != 'e' && column != 'f'
                 && column != 'g' && column != 'h')
                 || (line != '1' && line != '2' && line != '3' && line != '4' && line != '5' && line != '6'
-                        && line != '7' && line != '8')
+                && line != '7' && line != '8')
                 || (check == false));
 
         spot_start = Get_chosenspot(column, line, board);
@@ -71,7 +72,7 @@ public class Player {
         if (((column != 'a' && column != 'b' && column != 'c' && column != 'd' && column != 'e' && column != 'f'
                 && column != 'g' && column != 'h')
                 || (line != '1' && line != '2' && line != '3' && line != '4' && line != '5' && line != '6'
-                        && line != '7' && line != '8')
+                && line != '7' && line != '8')
                 || (check == false))) {
             throw new Exception("You did not choose the right element");
         } else {
@@ -79,7 +80,66 @@ public class Player {
         }
 
     }
+    public String generateRandomPos(List< Spot> list){
 
+        Random rand = new Random();
+        int maxIndex = list.size() - 1;
+        int randomIndex = rand.nextInt(maxIndex + 1);
+        Spot randomElement = list.get(randomIndex);
+        String nextPos = randomElement.getLetter() + "" + randomElement.getNumber();
+
+        return  nextPos;
+
+    }
+    public Spot ChooseSpotStart_graphOrdi(Board board, List<Spot> attacked ) throws Exception {
+
+        char line;
+        char column;
+        boolean check;
+        Spot spot_start = null;
+        List <Spot> available=board.getSpotList();
+
+
+        String pos = generateRandomPos(available);
+        System.out.println(pos);
+        column = pos.charAt(0);
+        line = pos.charAt(1);
+        check = Check_piece(column, line, board, attacked);
+        spot_start = Get_chosenspot(column, line, board);
+        if (((column != 'a' && column != 'b' && column != 'c' && column != 'd' && column != 'e' && column != 'f'
+                && column != 'g' && column != 'h')
+                || (line != '1' && line != '2' && line != '3' && line != '4' && line != '5' && line != '6'
+                && line != '7' && line != '8')
+                || (check == false))) {
+            throw new Exception("You did not choose the right element");
+        } else {
+            return spot_start;
+        }
+
+    }
+    public Spot ChooseSpotEnd_graphOrdi(Board board, Spot start, List<Spot> attacked) throws Exception{
+        char line = 'a';
+        char column = 'a';
+        Spot spot_end = null;
+        List<Spot> available;
+        available = start.getPiece().available_spot(board, start, attacked);
+        boolean test=false;
+        do{
+            String pos = generateRandomPos(available);
+            for (int i = 0; i < available.size(); i++) {
+                column = pos.charAt(0);
+                line = pos.charAt(1);
+                if (column == available.get(i).getLetter() && line == available.get(i).getNumber()) {
+                    spot_end = Get_chosenspot(column, line, board);
+                    test=true;
+                }
+            }
+        }while(!test);
+        if(test)
+            return spot_end;
+
+        throw new Exception("mauvaise destination");
+    }
     public Spot ChooseSpotEnd_graph(Board board, Spot start, List<Spot> attacked, String pos) throws Exception {
         char line = 'a';
         char column = 'a';
@@ -166,9 +226,7 @@ public class Player {
                 }
 
             }
-
         }
-
         return check;
     }
 
