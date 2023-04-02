@@ -83,7 +83,7 @@ Le jeu se termine lorsque le nombre de bâtons tombe à 0, le joueur prenant le 
 
 #### Présentation du jeu de Tir à l'arc
 
-Le jeu de Tir à l'arc est réalisé en **Python** avec la librairie **Tensorflow**.
+Le jeu de Tir à l'arc est réalisé en **Python** avec la librairie **OpenCV**.
 
 Le jeu se joue en utilisant la caméra de l'ordinateur. Le joueur doit donc se placer devant la caméra et faire un geste de la main pour jouer. Le jeu détecte ensuite le geste et le transforme en tir à l'arc. Le joueur doit ensuite viser la cible et tirer. Le jeu détecte ensuite si le tir est réussi ou non. L'ordinateur quant à lui génère aléatoirement un score qui est le sien pour le tour. Le vainqueur est celui qui a le meilleur score à la fin de la partie.
 
